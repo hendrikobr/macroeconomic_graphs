@@ -6,7 +6,7 @@
                                         big_mark = "."
                                         ) {
   
- # source("src/bootstrap.R")
+  source("src/bootstrap.R")
   
   ger_raw <- with_cache(paste0("genesis_13211-0001_", DATA_START_YEAR),
                         genesis_fetch("13211-0001"))
@@ -14,16 +14,15 @@
   hh_raw <- with_cache(paste0("genesis_13211-0007_", DATA_START_YEAR),
                        genesis_fetch("13211-0007"))
   
-#-------------------------------------------------------------------------------
   
   ger_dat <- parse_genesis(      
     ger_raw,
     value_var = "ERW116",
-    class_filters = list(is.na("1_variable_attribute_code")),
+    class_filters = list("1_variable_attribute_label" = "Insgesamt"),
     series_name = "Deutschland",
     geo = "DEU",
     scale = 1
-  )
+  ) 
   
   hh_dat <- parse_genesis(
     hh_raw,
@@ -33,7 +32,6 @@
     scale = 1
   ) 
   
-#-------------------------------------------------------------------------------
   
   dat <- dplyr::bind_rows(hh_dat, ger_dat)
   
@@ -61,7 +59,7 @@
       label = "Hamburg and Germany unemployment rate",
       render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
-        EN <- file.path(OUT_DIR, "employment graphs/German labeling")
+        EN <- file.path(OUT_DIR, "employment graphs/English labeling") 
         render_graph(.hh_ger_unemployment_annual(caption = "Datenquelle: Statistisches Bundesamt",
                                                 label_ger = "Deutschland", label_hh = "Hamburg",
                                                 y_axis = "Arbeitslosenquote", decimal_mark = ",", big_mark = "."),
@@ -75,5 +73,5 @@
   )
 
 if (!exists("auto_run_graph_file", mode = "function")) source("src/graph_modules.R")
-auto_run_graph_file("sr/graphs/employment/hh_ger_unemployment_rate.R", .graph_specs)
+auto_run_graph_file("src/graphs/employment/hh_ger_unemployment_rate.R", .graph_specs)
 
