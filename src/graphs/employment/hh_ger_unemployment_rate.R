@@ -38,7 +38,7 @@
   .graph_specs <- list(
     list(
       id = "hh_ger_unemployment_annual",
-      category = "emplyment",
+      category = "Employment",
       label = "Hamburg and Germany unemployment rate",
       render = function() {
         GER <- file.path(OUT_DIR, "employment graphs/German labeling")
