@@ -24,7 +24,6 @@
     hh_dat,
     y_axis,
     caption = "Datenquelle: Statistisches Bundesamt",
-    labels = NULL,
     decimal_mark = ".",
     big_mark = ",",
     color = hwwi_blue,
