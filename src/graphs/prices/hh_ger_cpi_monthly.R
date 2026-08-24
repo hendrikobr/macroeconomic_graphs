@@ -7,7 +7,7 @@
                                 ){
   source("src/bootstrap.R")
   
-  ger_raw <- with_cache(paste0("genesis_61111-0002_", start_year = 2015),
+  ger_raw <- with_cache(paste0("genesis_61111-0002_", DATA_START_YEAR),
                         genesis_fetch("61111-0002")) 
   
   hh_raw <- with_cache(paste0("genesis_61111-0011_", DATA_START_YEAR),
@@ -32,7 +32,8 @@
     dropmissing = FALSE
   )
   
-  dat <- dplyr::bind_rows(hh_dat, ger_dat)
+  dat <- dplyr::bind_rows(hh_dat, ger_dat) %>%
+    filter(date >= as.Date("2015-01-01"))
   
   plot_timeseries_multi(
     dat = dat,
