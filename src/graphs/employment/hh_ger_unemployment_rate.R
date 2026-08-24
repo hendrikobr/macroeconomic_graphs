@@ -1,7 +1,10 @@
 .hh_ger_unemployment_annual <- function(caption,
                                         label_ger = "Deutschland",
                                         label_hh = "Hamburg",
-                                        y) {
+                                        y_axis = "Arbeitsloenquote",
+                                        decimal_mark = ",",
+                                        big_mark = "."
+                                        ) {
   
   source("src/bootstrap.R")
   
@@ -26,10 +29,17 @@
   dat <- dplyr::bind_rows(hh_dat, ger_dat)
   
   plot_timeseries_multi(
-    dat, y_axis, caption, labels=NULL,
-    decimal_mark = ".", big_mark = ",",
-    colors = hwwi_palette, x_breaks = "1 year",
-    y_limits = NULL, linewidth = 1.8
+    dat = dat, 
+    y_axis = y_axis, 
+    caption = "Datenquelle: Statistisches Bundesamt", 
+    labels=NULL,
+    decimal_mark = ".", 
+    big_mark = ",",
+    colors = c(hwwi_dark_blue, hwwi_dark_rubin), 
+    x_breaks = "1 year",
+    y_limits = NULL, 
+    linewidth = 1.8,
+    angle = 45
   )
     
 }
@@ -45,12 +55,12 @@
         EN <- file.path(OUT_DIR, "employment graphs/German labeling")
         render_graph(.hh_ger_unemployment_annual(caption = "Datenquelle: Statistisches Bundesamt",
                                                 label_ger = "Deutschland", label_hh = "Hamburg",
-                                                y_axis = "Arbeitslosenquote in %", decimal_mark = ",", big_mark = "."),
-                     "GER HH unemployment rate", GER)
+                                                y_axis = "Arbeitslosenquote", decimal_mark = ",", big_mark = "."),
+                     "HH GER unemployment rate", GER)
         render_graph(.hh_ger_unemployment_annual(caption = "Data source: Federal statistical office (Destatis)",
                                                 label_ger = "Germany", label_hh = "Hamburg",
-                                                y_axis = "Unemployment rate in %", decimal_mark = ".", big_mark = ","),
-                     "GER HH unemployment rate", EN)
+                                                y_axis = "Unemployment rate", decimal_mark = ".", big_mark = ","),
+                     "HH GER unemployment rate", EN)
       }
     )
   )
