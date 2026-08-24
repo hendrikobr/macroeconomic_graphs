@@ -1,12 +1,12 @@
 .hh_ger_unemployment_annual <- function(caption,
                                         label_ger = "Deutschland",
                                         label_hh = "Hamburg",
-                                        y_axis = "Arbeitsloenquote",
+                                        y_axis = "Arbeitslosenquote",
                                         decimal_mark = ",",
                                         big_mark = "."
                                         ) {
   
-  source("src/bootstrap.R")
+ # source("src/bootstrap.R")
   
   ger_raw <- with_cache(paste0("genesis_13211-0001_", DATA_START_YEAR),
                         genesis_fetch("13211-0001"))
@@ -14,23 +14,32 @@
   hh_raw <- with_cache(paste0("genesis_13211-0007_", DATA_START_YEAR),
                        genesis_fetch("13211-0007"))
   
-  ger_dat <- ger_raw %>%
-    filter(`1_variable_attribute_label` == "Insgesamt") %>%
-    filter(value_unit == "Prozent") %>%
-    select(5, 10) %>%
-    arrange(time)
+#-------------------------------------------------------------------------------
   
-  hh_dat <- hh_raw %>%
-    filter(`1_variable_attribute_label` == "Hamburg") %>%
-    filter(value_unit == "Prozent") %>%
-    select(5, 10) %>%
-    arrange(time)
+  ger_dat <- parse_genesis(      
+    ger_raw,
+    value_var = "ERW116",
+    class_filters = list(is.na("1_variable_attribute_code")),
+    series_name = "Deutschland",
+    geo = "DEU",
+    scale = 1
+  )
+  
+  hh_dat <- parse_genesis(
+    hh_raw,
+    value_var = "ERW116",
+    class_filters = list("1_variable_attribute_code" = "02"),
+    series_name = "Hamburg",
+    scale = 1
+  ) 
+  
+#-------------------------------------------------------------------------------
   
   dat <- dplyr::bind_rows(hh_dat, ger_dat)
   
   plot_timeseries_multi(
-    dat = dat, 
-    y_axis = y_axis, 
+    dat = dat,
+    y_axis = y_axis,
     caption = "Datenquelle: Statistisches Bundesamt", 
     labels=NULL,
     decimal_mark = ".", 
@@ -47,7 +56,7 @@
 
   .graph_specs <- list(
     list(
-      id = ".hh_ger_unemployment_annual",
+      id = "hh_ger_unemployment_annual",
       category = "Employment",
       label = "Hamburg and Germany unemployment rate",
       render = function() {
