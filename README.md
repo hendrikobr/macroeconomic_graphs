@@ -33,6 +33,7 @@ restatis::gen_auth_save("genesis")
 ```
 
 Zensus 2022 can be configured in the same way by replacing `"genesis"` with `"zensus"`.
+
 ## Usage
 Run one of the following commands in the project terminal to generate graphs.
 ![example](doc/terminal.png) 
