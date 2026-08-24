@@ -28,7 +28,8 @@
     class_filters = list("2_variable_attribute_code" = "02"),
     series_name = "Hamburg",
     geo = "DEU",
-    scale = 1
+    scale = 1,
+    dropmissing = FALSE
   )
   
   dat <- dplyr::bind_rows(hh_dat, ger_dat)
