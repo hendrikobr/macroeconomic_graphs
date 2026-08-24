@@ -14,11 +14,47 @@
   ger_dat <- ger_raw %>%
     filter(`1_variable_attribute_label` == "Insgesamt") %>%
     filter(value_unit == "Prozent") %>%
-    select(5, 10, 11)
+    select(5, 10) %>%
+    arrange(time)
   
   hh_dat <- hh_raw %>%
     filter(`1_variable_attribute_label` == "Hamburg") %>%
     filter(value_unit == "Prozent") %>%
-    select(5, 10, 11)
+    select(5, 10) %>%
+    arrange(time)
+  
+  dat <- dplyr::bind_rows(hh_dat, ger_dat)
+  
+  plot_timeseries_multi(
+    dat, y_axis, caption, labels=NULL,
+    decimal_mark = ".", big_mark = ",",
+    colors = hwwi_palette, x_breaks = "1 year",
+    y_limits = NULL, linewidth = 1.8
+  )
     
 }
+
+
+  .graph_specs <- list(
+    list(
+      id = "hh_ger_unemployment_annual",
+      category = "unemplyment",
+      label = "Hamburg and Germany unemployment rate",
+      render = function() {
+        GER <- file.path(OUT_DIR, "employment graphs/German labeling")
+        EN <- file.path(OUT_DIR, "employment graphs/German labeling")
+        render_graph(hh_ger_unemployment_annual(caption = "Datenquelle: Statistisches Bundesamt",
+                                                label_ger = "Deutschland", label_hh = "Hamburg",
+                                                y_axis = "Arbeitslosenquote in %", deciaml_mark = ",", big_mark = "."),
+                     "GER HH unemployment rate", GER)
+        render_graph(hh_ger_unemployment_annual(caption = "Data source: Federal statistical office (Destatis)",
+                                                label_ger = "Germany", label_hh = "Hamburg",
+                                                y_axis = "Unemployment rate in %", decimal_mark = ".", big_mark = ","),
+                     "GER HH unemployment rate", EN)
+      }
+    )
+  )
+
+if (!exists("auto_run_graph_file", mode = "function")) source("src/graph_modules.R")
+auto_run_graph_file("sr/graphs/employment/hh_ger_unemployment_rate.R", .graph_specs)
+
