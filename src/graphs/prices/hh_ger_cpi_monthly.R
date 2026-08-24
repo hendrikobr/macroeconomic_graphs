@@ -25,7 +25,7 @@
   hh_dat <- parse_genesis(
     hh_raw,
     value_var = "PREIS1",
-    class_filters = list("2_variable_attribute_code" == "02"),
+    class_filters = list("2_variable_attribute_code" = "02"),
     series_name = "Hamburg",
     geo = "DEU",
     scale = 1
