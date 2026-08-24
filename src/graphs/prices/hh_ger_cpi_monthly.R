@@ -57,8 +57,8 @@
       category = "Prices",
       label = "Hamburg and Germany Consumer Price Index monthly",
       render = function() {
-        GER <- file.path(OUT_DIR, "price graphs/German labeling")
-        EN <- file.path(OUT_DIR, "price graphs/English labeling")
+        GER <- file.path(OUT_DIR, "prices graphs/German labeling")
+        EN <- file.path(OUT_DIR, "prices graphs/English labeling")
         render_graph(.hh_ger_cpi_monthly(caption = "Datenquelle: Statistisches Bundesamt",
                                          label_ger = "Deutschland", label_hh = "Hamburg",
                                          y_axis = "Verbraucherpreisindex", decimal_mark = ",", big_mark = "."),
