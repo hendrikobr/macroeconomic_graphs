@@ -59,8 +59,8 @@
   
   plot_timeseries_multi(
     dat,
-    y_axis = "Exporte (2020=100)",
-    caption = "Datenquelle",
+    y_axis = y_axis,
+    caption = caption,
     labels = NULL,
     decimal_mark = ".",
     big_mark = ",",
@@ -84,8 +84,8 @@
                                             label_ger = "Deutschland", label_hh = "Hamburg",
                                             y_axis_left = "Exporte (2020=100)", y_axis_right = "Exporte (2020=100)",
                                             decimal_mark = ",", big_mark = "."),
-                                      "HH GER Exports monthly index seasonal adjusted", GER )  
-        render_graph(.hh_ger_export_index_monthly(caption = "Federal statistical office (Destatis)",
+                                      "HH GER Exports monthly index seasonal adjusted", GER)  
+        render_graph(.hh_ger_export_index_monthly(caption = "Data source: Federal statistical office (Destatis)",
                                             label_ger = "Germany", label_hh = "Hamburg",
                                             y_axis_left = "Exports (2020=100)", y_axis_right = "Exports (2020=100)",
                                             decimal_mark = ".", big_mark = "."),
