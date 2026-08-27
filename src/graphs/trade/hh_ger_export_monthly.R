@@ -1,5 +1,5 @@
 .hh_ger_export_index_monthly <- function(caption,
-                                          label_ger = "Deutschland",
+                                          label_ger = "",
                                           label_hh = "Hamburg",
                                           y_axis = "Exporte in Tsd. EUR",
                                           decimal_mark = ",",
