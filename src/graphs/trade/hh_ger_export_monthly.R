@@ -74,18 +74,18 @@
 
   .graph_specs <- list(
     list(
-      id = "hh_ger_export_monthly",
+      id = "hh_ger_export_index_monthly",
       category = "Trade",
       label = "Hamburg and Germany Exports monthly seasonal adjusted",
       render = function() {
         GER <- file.path(OUT_DIR, "trade graphs/German labeling")
         EN <- file.path(OUT_DIR, "trade graphs/English labeling")
-        render_graph(.hh_ger_export_monthly(caption = "Datenquelle: Statistisches Bundesamt",
+        render_graph(.hh_ger_export_index_monthly(caption = "Datenquelle: Statistisches Bundesamt",
                                             label_ger = "Deutschland", label_hh = "Hamburg",
                                             y_axis_left = "Exporte (2020=100)", y_axis_right = "Exporte (2020=100)",
                                             decimal_mark = ",", big_mark = "."),
                                       "HH GER Exports monthly index seasonal adjusted", GER )  
-        render_graph(.hh_ger_export_monhtly(caption = "Federal statistical office (Destatis)",
+        render_graph(.hh_ger_export_index_monhtly(caption = "Federal statistical office (Destatis)",
                                             label_ger = "Germany", label_hh = "Hamburg",
                                             y_axis_left = "Exports (2020=100)", y_axis_right = "Exports (2020=100)",
                                             decimal_mark = ".", big_mark = "."),
