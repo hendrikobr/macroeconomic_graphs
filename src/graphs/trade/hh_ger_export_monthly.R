@@ -85,7 +85,7 @@
                                             y_axis_left = "Exporte (2020=100)", y_axis_right = "Exporte (2020=100)",
                                             decimal_mark = ",", big_mark = "."),
                                       "HH GER Exports monthly index seasonal adjusted", GER )  
-        render_graph(.hh_ger_export_index_monhtly(caption = "Federal statistical office (Destatis)",
+        render_graph(.hh_ger_export_index_monthly(caption = "Federal statistical office (Destatis)",
                                             label_ger = "Germany", label_hh = "Hamburg",
                                             y_axis_left = "Exports (2020=100)", y_axis_right = "Exports (2020=100)",
                                             decimal_mark = ".", big_mark = "."),
