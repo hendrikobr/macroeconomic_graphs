@@ -95,4 +95,4 @@
   )
 
 if (!exists("auto_run_graph_file", mode = "function")) source("src/graph_modules.R")
-auto_run_graph_file("src/graphs/trade/hh_ger_export_mothly.R", .graph_specs)
+auto_run_graph_file("src/graphs/trade/hh_ger_export_monthly.R", .graph_specs)
