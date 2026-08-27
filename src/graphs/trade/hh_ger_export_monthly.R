@@ -59,7 +59,7 @@
     dat,
     y_axis = y_axis,
     caption = caption,
-    labels = NULL,
+    labels = labels,
     decimal_mark = ".",
     big_mark = ",",
     colors = hwwi_palette,
